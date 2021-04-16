@@ -13,7 +13,7 @@ export interface CalendarEventObject {
   endTime?: Duration;
   startRecur?: string | Date;
   endRecur?: string | Date;
-  recurrenceId?: string | null;
+  recurrenceId?: string | Date;
   title: string;
   rrule?: RRule;
   duration: Duration;

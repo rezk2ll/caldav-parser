@@ -1,6 +1,6 @@
 import { parse } from '../src/lib/parser';
 import { CalendarEventObject, Attendee } from '../src/types/dav-parser';
-import { simpleIcs, customPropertiesIcs, recurringEventIcs, sabreIcs } from './const';
+import { simpleIcs, customPropertiesIcs, recurringEventIcs, sabreIcs, exceptionIcs } from './const';
 
 describe('the parse function', () => {
   const assertAttendeeParsing = (attendee: Attendee, partstat: string, email: string, cn: string) => {
@@ -53,5 +53,11 @@ describe('the parse function', () => {
     const events: CalendarEventObject[] = parse(sabreIcs);
 
     expect(events).toHaveLength(1);
-  })
+  });
+
+  it('should parse exceptions', () => {
+    const events: CalendarEventObject[] = parse(exceptionIcs);
+
+    expect(events[0].exceptions).toHaveLength(4);
+  });
 });
